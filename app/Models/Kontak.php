@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kontak extends Model
 {
-    protected $table = 'kontak'; // <-- Tambahkan baris ini
+    protected $table = 'kontak';
+
+    protected $fillable = [
+        'nama',
+        'email',
+        'subjek',
+        'pesan',
+    ];
 }

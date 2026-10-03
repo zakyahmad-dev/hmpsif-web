@@ -27,50 +27,56 @@
                 <div class="card card-modern p-4 p-md-5 shadow-lg">
                     <h2 class="h4 fw-bold mb-4">Formulir Pendaftaran</h2>
                     @if(session('success'))
-                        <div class="alert alert-success rounded-3 mb-4">{{ session('success') }}</div>
+                        <div class="alert alert-success rounded-3 mb-4" role="status">{{ session('success') }}</div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger rounded-3 mb-4" role="alert">
+                            <p class="fw-bold mb-1">Periksa kembali data yang diisi:</p>
+                            <ul class="mb-0">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+                        </div>
                     @endif
                     <form action="{{ route('gabung.store') }}" method="POST">
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold">Nama Lengkap</label>
-                                <input type="text" name="nama" class="form-control rounded-3 py-2" required>
+                                <input type="text" name="nama" class="form-control rounded-3 py-2" value="{{ old('nama') }}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold">NIM</label>
-                                <input type="text" name="nim" class="form-control rounded-3 py-2" required>
+                                <input type="text" name="nim" class="form-control rounded-3 py-2" value="{{ old('nim') }}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold">Semester</label>
-                                <input type="number" name="semester" class="form-control rounded-3 py-2" required>
+                                <input type="number" name="semester" min="1" max="14" step="1" class="form-control rounded-3 py-2" value="{{ old('semester') }}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold">Kelas</label>
-                                <input type="text" name="kelas" class="form-control rounded-3 py-2" required>
+                                <input type="text" name="kelas" class="form-control rounded-3 py-2" value="{{ old('kelas') }}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold">No. WhatsApp</label>
-                                <input type="text" name="whatsapp" class="form-control rounded-3 py-2" required>
+                                <input type="text" name="whatsapp" class="form-control rounded-3 py-2" value="{{ old('whatsapp') }}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold">Email UNISNU</label>
-                                <input type="email" name="email" class="form-control rounded-3 py-2" required>
+                                <input type="email" name="email" class="form-control rounded-3 py-2" value="{{ old('email') }}" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label small fw-bold">Pilihan Divisi</label>
                                 <select name="divisi" class="form-select rounded-3 py-2" required>
                                     @foreach($departments as $dept)
-                                        <option value="{{ $dept }}">{{ $dept }}</option>
+                                        <option value="{{ $dept }}" {{ old('divisi') === $dept ? 'selected' : '' }}>{{ $dept }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12">
                                 <label class="form-label small fw-bold">Alasan Ingin Bergabung</label>
-                                <textarea name="alasan" rows="3" class="form-control rounded-3" required></textarea>
+                                <textarea name="alasan" rows="3" class="form-control rounded-3" required>{{ old('alasan') }}</textarea>
                             </div>
                             <div class="col-12">
                                 <div class="form-check">
-                                    <input type="checkbox" name="agree" id="agree" class="form-check-input" required>
+                                    <input type="checkbox" name="agree" id="agree" class="form-check-input" value="1" {{ old('agree') ? 'checked' : '' }} required>
                                     <label for="agree" class="form-check-label small text-muted">Saya menyatakan data yang diisi adalah benar.</label>
                                 </div>
                             </div>
