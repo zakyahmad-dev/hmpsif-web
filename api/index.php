@@ -1,4 +1,4 @@
 <?php
 
-// Forward Vercel requests to the Laravel public/index.php
+// Forward kustom untuk Vercel Serverless Function ke Laravel Public Entrypoint
 require __DIR__ . '/../public/index.php';
