@@ -1,7 +1,15 @@
 <?php
 
-// Paksa response header menjadi HTML agar tidak terunduh sebagai file statis
-header('Content-Type: text/html; charset=utf-8');
+// Load Autoload & Bootstrap Laravel secara eksplisit untuk Vercel
+require __DIR__ . '/../vendor/autoload.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
-// Muat entrypoint utama Laravel dari folder public
-require __DIR__ . '/../public/index.php';
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+
+$response->send();
+
+$kernel->terminate($request, $response);
