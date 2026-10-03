@@ -18,7 +18,7 @@ class PendaftaranController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:120',
             'nim' => 'required|string|max:40',
-            'semester' => 'required|numeric|min:1|max:14',
+            'semester' => 'required|integer|min:1|max:14',
             'kelas' => 'required|string|max:30',
             'whatsapp' => 'required|string|max:30',
             'email' => 'required|email|max:120',

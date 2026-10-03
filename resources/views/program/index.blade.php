@@ -13,19 +13,27 @@
 
         <form method="GET" class="card card-modern p-3 mb-5 shadow-sm">
             <div class="row g-2">
-                <div class="col-12 col-md-5">
-                    <input type="text" name="q" class="form-control border-0 bg-light rounded-3 py-2 px-3" placeholder="Cari nama program..." value="{{ request('q') }}">
+                <div class="col-12 col-md-4">
+                    <input type="text" name="q" class="form-control border-0 bg-light rounded-3 py-2 px-3" placeholder="Cari nama program..." value="{{ $q }}" aria-label="Cari program kerja">
                 </div>
                 <div class="col-6 col-md-3">
-                    <select name="divisi" class="form-select border-0 bg-light rounded-3 py-2">
+                    <select name="divisi" class="form-select border-0 bg-light rounded-3 py-2" aria-label="Filter divisi">
                         <option value="">Semua Divisi</option>
-                        <option value="PSDM">PSDM</option>
-                        <option value="Kominfo">Kominfo</option>
-                        <option value="Pendidikan">Pendidikan</option>
+                        @foreach($divisions as $division)
+                            <option value="{{ $division }}" {{ $div === $division ? 'selected' : '' }}>{{ $division }}</option>
+                        @endforeach
                     </select>
                 </div>
-                <div class="col-6 col-md-4">
-                    <button type="submit" class="btn btn-blue-primary rounded-3 w-100 py-2">Filter Program</button>
+                <div class="col-6 col-md-3">
+                    <select name="status" class="form-select border-0 bg-light rounded-3 py-2" aria-label="Filter status">
+                        <option value="">Semua Status</option>
+                        @foreach($statuses as $programStatus)
+                            <option value="{{ $programStatus }}" {{ $status === $programStatus ? 'selected' : '' }}>{{ $programStatus }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-12 col-md-2">
+                    <button type="submit" class="btn btn-blue-primary rounded-3 w-100 py-2">Terapkan</button>
                 </div>
             </div>
         </form>

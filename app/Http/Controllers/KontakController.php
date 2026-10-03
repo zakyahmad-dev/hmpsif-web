@@ -23,6 +23,6 @@ class KontakController extends Controller
 
         Kontak::create($validated);
 
-        return back()->with('success', 'Pesan Anda telah terkirim ke pengurus HMPSIF. Terima kasih!');
+        return back()->with('success', 'Pesan Anda berhasil disimpan. Terima kasih!');
     }
 }

@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pendaftaran extends Model
 {
-    protected $table = 'pendaftaran'; // <-- Tambahkan baris ini
+    protected $table = 'pendaftaran';
+
+    protected $fillable = [
+        'nama',
+        'nim',
+        'semester',
+        'kelas',
+        'whatsapp',
+        'email',
+        'divisi',
+        'alasan',
+        'agree',
+        'status',
+    ];
 }

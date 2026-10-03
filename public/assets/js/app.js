@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const navigation = document.getElementById("mainNavigation");
+    const navigation = document.getElementById("mainNav");
     if (navigation && window.bootstrap) {
         navigation.querySelectorAll("a:not(.dropdown-toggle)").forEach((link) => {
             link.addEventListener("click", () => {
                 if (window.innerWidth < 992 && navigation.classList.contains("show")) {
-                    bootstrap.Collapse.getOrCreateInstance(navigation).hide();
+                    window.bootstrap.Collapse.getOrCreateInstance(navigation).hide();
                 }
             });
         });
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
             const toastElement = document.getElementById("successToast");
             if (toastElement && window.bootstrap) {
-                bootstrap.Toast.getOrCreateInstance(toastElement).show();
+                window.bootstrap.Toast.getOrCreateInstance(toastElement).show();
             }
         });
     });

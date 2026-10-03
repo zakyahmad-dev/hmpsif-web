@@ -13,9 +13,11 @@ class KegiatanController extends Controller
         $query = Kegiatan::query();
 
         if ($q !== '') {
-            $query->where('nama', 'like', "%{$q}%")
-                  ->orWhere('deskripsi', 'like', "%{$q}%")
-                  ->orWhere('lokasi', 'like', "%{$q}%");
+            $query->where(function ($search) use ($q) {
+                $search->where('nama', 'like', "%{$q}%")
+                    ->orWhere('deskripsi', 'like', "%{$q}%")
+                    ->orWhere('lokasi', 'like', "%{$q}%");
+            });
         }
 
         $activities = $query->orderBy('tanggal', 'desc')->get();
