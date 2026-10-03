@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'HMPSIF UNISNU' }}</title>
 
-    <!-- Asset Vite / Bootstrap CSS -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- 1. Bootstrap CSS & FontAwesome CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 2. CSS Custom Lokal Kamu (Sesuaikan path file CSS di public/) -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 <body class="bg-light">
 
-    <!-- Header & Navbar (Menggunakan sticky-top agar menempel tanpa menimpa konten) -->
+    <!-- Header & Navbar (sticky-top agar menempel tanpa menimpa konten) -->
     <header class="sticky-top px-3 px-md-4 pt-3 bg-light">
         <nav class="navbar navbar-expand-lg rounded-4 custom-navbar shadow-sm bg-white">
             <div class="container-fluid px-2 px-md-3">
@@ -65,10 +69,12 @@
         </nav>
     </header>
 
-    <!-- Pembungkus Utama Konten (Diberi margin atas agar berjarak rapi dari header) -->
+    <!-- Pembungkus Utama Konten -->
     <main class="container-fluid px-3 px-md-4 pt-4 pb-5">
         @yield('content')
     </main>
 
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
